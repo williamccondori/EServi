@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace EServi.Microservices.Auth.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly ILogger<AuthController> _logger;

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 namespace EServi.Microservices.User.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;

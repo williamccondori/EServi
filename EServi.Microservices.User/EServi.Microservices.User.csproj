@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EServi.Microservices.User.UseCase\EServi.Microservices.User.UseCase.csproj" />
+      <ProjectReference Include="..\EServi.Shared\EServi.Shared.csproj" />
     </ItemGroup>
 
 

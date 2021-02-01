@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+
+  consul:
+    image: consul:latest
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    hostname: consul
+    container_name: consul
+    ports:
+      - 8500:8500
