@@ -1,3 +1,6 @@
+using EServi.Microservices.Auth.Infrastructure.Jwt;
+using EServi.Microservices.Auth.Infrastructure.Jwt.Builders;
+using EServi.Microservices.Auth.Infrastructure.Jwt.Builders.Implementations;
 using EServi.Microservices.Auth.UseCase.Services;
 using EServi.Microservices.Auth.UseCase.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +18,7 @@ namespace EServi.Microservices.Auth
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -23,6 +26,14 @@ namespace EServi.Microservices.Auth
             services.AddControllers();
 
             services.AddScoped<IAuthService, AuthService>();
+
+            services.Configure<JwtOptions>(o =>
+            {
+                o.ExpiryMinutes = 30;
+                o.SecretId = "8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb";
+            });
+
+            services.AddScoped<IJwtBuilder, JwtBuilder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,25 +6,18 @@ namespace EServi.Microservices.User.UseCase.Services.Implementations
 {
     public class UserService : IUserService
     {
-        public async Task<UserInfo> GetInfoById(Guid id)
+        public Task<UserInfo> GetInfoById(string id)
         {
-            UserInfo userInfo = null;
-
-            await Task.Run(() =>
-            {
-                userInfo = new UserInfo
-                {
-                    Id = new Guid(),
-                    Name = "William"
-                };
-            });
-
-            return userInfo;
+            throw new NotImplementedException();
         }
 
-        public async Task<UserProfile> UpdateProfile(Guid id, UserProfile userProfile)
+        public Task<UserProfile> UpdateProfile(string id, UserProfile userProfile)
         {
-            return userProfile;
+            throw new NotImplementedException();
+        }
+
+        public Task<UserRegister> Register(UserRegister userRegister)
+        {throw new NotImplementedException();
         }
     }
 }

@@ -30,6 +30,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A7F38E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Shared", "EServi.Shared\EServi.Shared.csproj", "{BECBDE25-B46E-485B-B8BD-022B796EC410}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Auth.Infrastructure.MongoDb", "EServi.Microservices.Auth.Infrastructure.MongoDb\EServi.Microservices.Auth.Infrastructure.MongoDb.csproj", "{6AC08434-9A7B-4F46-842C-25B4E7236495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Auth.Infrastructure.Jwt", "EServi.Microservices.Auth.Infrastructure.Jwt\EServi.Microservices.Auth.Infrastructure.Jwt.csproj", "{FE8AFB47-9C56-4862-886D-D2777F756A96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.RabbitMq", "EServi.RabbitMq\EServi.RabbitMq.csproj", "{ECA35B81-DAA9-48A6-B87E-7D8D42A748B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers", "EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers\EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.csproj", "{621838D1-2621-4B0A-A304-2C0831368FB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Catalog", "3. Catalog", "{A1CC02CC-72DD-4554-8ECC-4CF3BDB133C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +59,11 @@ Global
 		{E36101F3-8B84-4266-9C61-5F6790621BE5} = {1F31794A-C96F-4FA8-912E-A44797190166}
 		{A7F38E46-32C3-414C-A2E9-301F13F9C67A} = {86CEB24C-B000-41EE-B006-F673F2B07DEF}
 		{BECBDE25-B46E-485B-B8BD-022B796EC410} = {A7F38E46-32C3-414C-A2E9-301F13F9C67A}
+		{6AC08434-9A7B-4F46-842C-25B4E7236495} = {A39EA069-E860-438B-B25C-164009D3E80D}
+		{FE8AFB47-9C56-4862-886D-D2777F756A96} = {A39EA069-E860-438B-B25C-164009D3E80D}
+		{ECA35B81-DAA9-48A6-B87E-7D8D42A748B6} = {A7F38E46-32C3-414C-A2E9-301F13F9C67A}
+		{621838D1-2621-4B0A-A304-2C0831368FB1} = {A39EA069-E860-438B-B25C-164009D3E80D}
+		{A1CC02CC-72DD-4554-8ECC-4CF3BDB133C4} = {86CEB24C-B000-41EE-B006-F673F2B07DEF}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E4D3C89F-7F13-4D33-9D51-317AB53462D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -87,5 +102,21 @@ Global
 		{BECBDE25-B46E-485B-B8BD-022B796EC410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BECBDE25-B46E-485B-B8BD-022B796EC410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BECBDE25-B46E-485B-B8BD-022B796EC410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AC08434-9A7B-4F46-842C-25B4E7236495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AC08434-9A7B-4F46-842C-25B4E7236495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AC08434-9A7B-4F46-842C-25B4E7236495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AC08434-9A7B-4F46-842C-25B4E7236495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE8AFB47-9C56-4862-886D-D2777F756A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE8AFB47-9C56-4862-886D-D2777F756A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE8AFB47-9C56-4862-886D-D2777F756A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE8AFB47-9C56-4862-886D-D2777F756A96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA35B81-DAA9-48A6-B87E-7D8D42A748B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA35B81-DAA9-48A6-B87E-7D8D42A748B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA35B81-DAA9-48A6-B87E-7D8D42A748B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA35B81-DAA9-48A6-B87E-7D8D42A748B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621838D1-2621-4B0A-A304-2C0831368FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621838D1-2621-4B0A-A304-2C0831368FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621838D1-2621-4B0A-A304-2C0831368FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621838D1-2621-4B0A-A304-2C0831368FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

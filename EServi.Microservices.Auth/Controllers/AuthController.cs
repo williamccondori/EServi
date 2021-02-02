@@ -47,5 +47,28 @@ namespace EServi.Microservices.Auth.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, e);
             }
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> Validate([FromQuery] string token)
+        {
+            _logger.LogTrace(nameof(Validate));
+
+            try
+            {
+                var isValid = await _authService.Validate(token);
+
+                return Ok(isValid);
+            }
+            catch (ValidationException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
+        }
     }
 }
