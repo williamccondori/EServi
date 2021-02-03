@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\EServi.Microservices.Auth.Domain\EServi.Microservices.Auth.Domain.csproj" />
+      <ProjectReference Include="..\EServi.Microservices.Auth.Infrastructure.Jwt\EServi.Microservices.Auth.Infrastructure.Jwt.csproj" />
+      <ProjectReference Include="..\EServi.Microservices.Auth.Infrastructure.MongoDb\EServi.Microservices.Auth.Infrastructure.MongoDb.csproj" />
+      <ProjectReference Include="..\EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers\EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.csproj" />
+      <ProjectReference Include="..\EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers\EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers.csproj" />
+      <ProjectReference Include="..\EServi.Microservices.Auth.UseCase\EServi.Microservices.Auth.UseCase.csproj" />
+    </ItemGroup>
+</Project>
