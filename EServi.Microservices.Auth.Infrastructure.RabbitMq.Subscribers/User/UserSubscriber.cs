@@ -49,12 +49,12 @@ namespace EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers.User
             return Task.CompletedTask;
         }
 
-        private void HandleMessage(AuthRegister authRegister)
+        private async void HandleMessage(AuthRegister authRegister)
         {
             using var scope = _serviceScopeFactory.CreateScope();
                 
             var authService = scope.ServiceProvider.GetRequiredService<IAuthService>();
-            authService.Register(authRegister);
+            await authService.Register(authRegister);
         }
 
         public override void Dispose()
