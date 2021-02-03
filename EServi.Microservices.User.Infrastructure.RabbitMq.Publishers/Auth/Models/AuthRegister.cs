@@ -1,6 +1,6 @@
-﻿namespace EServi.Microservices.Auth.UseCase.Models
+﻿namespace EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.Auth.Models
 {
-    public class IdentityRegister
+    public class AuthRegister
     {
         public string UserId { get; set; }
         public string FullName { get; set; }

@@ -4,4 +4,9 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EServi.Microservices.User.Domain\EServi.Microservices.User.Domain.csproj" />
+      <ProjectReference Include="..\EServi.Microservices.User.Infrastructure.RabbitMq.Publishers\EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.csproj" />
+    </ItemGroup>
+
 </Project>

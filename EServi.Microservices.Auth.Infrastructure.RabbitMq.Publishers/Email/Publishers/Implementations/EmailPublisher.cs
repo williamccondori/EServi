@@ -9,6 +9,8 @@ namespace EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.Email.Pub
 {
     public class EmailPublisher : IEmailPublisher
     {
+        private const string QUEUE_NAME = "send-activation-code--email";
+        
         private readonly IConnection _connection;
 
         public EmailPublisher(IOptions<RabbitMqOptions> options)
@@ -23,10 +25,8 @@ namespace EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.Email.Pub
 
         public void SendActivationCodeEmail(ActivationCodeEmail activationCodeEmail)
         {
-            const string queueName = "email-send-activation-code";
-
             using var channel = _connection.CreateModel();
-            channel.QueueDeclare(queueName, true, false, false, null);
+            channel.QueueDeclare(QUEUE_NAME, true, false, false, null);
 
             var message = JsonSerializer.Serialize(activationCodeEmail);
             var body = Encoding.UTF8.GetBytes(message);
@@ -34,7 +34,7 @@ namespace EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.Email.Pub
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
 
-            channel.BasicPublish(string.Empty, queueName, properties, body);
+            channel.BasicPublish(string.Empty, QUEUE_NAME, properties, body);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace EServi.Microservices.Auth.UseCase.Services.Implementations
             _identityRepository = identityRepository;
         }
 
-        public async Task Register(IdentityRegister authRegister)
+        public async Task Register(AuthRegister authRegister)
         {
             var existingIdentity = await _identityRepository.GetByEmail(authRegister.Email);
 

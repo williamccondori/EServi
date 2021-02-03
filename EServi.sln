@@ -40,6 +40,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Auth.I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Catalog", "3. Catalog", "{A1CC02CC-72DD-4554-8ECC-4CF3BDB133C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.User.Infrastructure.RabbitMq.Publishers", "EServi.Microservices.User.Infrastructure.RabbitMq.Publishers\EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.csproj", "{F19B55D1-99A3-41DB-A16C-78253ADEDE16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers", "EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers\EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers.csproj", "{93EE20EC-19C8-426B-9FFC-5B90C85B03BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +68,8 @@ Global
 		{ECA35B81-DAA9-48A6-B87E-7D8D42A748B6} = {A7F38E46-32C3-414C-A2E9-301F13F9C67A}
 		{621838D1-2621-4B0A-A304-2C0831368FB1} = {A39EA069-E860-438B-B25C-164009D3E80D}
 		{A1CC02CC-72DD-4554-8ECC-4CF3BDB133C4} = {86CEB24C-B000-41EE-B006-F673F2B07DEF}
+		{F19B55D1-99A3-41DB-A16C-78253ADEDE16} = {DBA784EC-9900-428B-B04E-089BDCFC18F6}
+		{93EE20EC-19C8-426B-9FFC-5B90C85B03BC} = {A39EA069-E860-438B-B25C-164009D3E80D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E4D3C89F-7F13-4D33-9D51-317AB53462D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -118,5 +124,13 @@ Global
 		{621838D1-2621-4B0A-A304-2C0831368FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{621838D1-2621-4B0A-A304-2C0831368FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{621838D1-2621-4B0A-A304-2C0831368FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19B55D1-99A3-41DB-A16C-78253ADEDE16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19B55D1-99A3-41DB-A16C-78253ADEDE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19B55D1-99A3-41DB-A16C-78253ADEDE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19B55D1-99A3-41DB-A16C-78253ADEDE16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93EE20EC-19C8-426B-9FFC-5B90C85B03BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93EE20EC-19C8-426B-9FFC-5B90C85B03BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93EE20EC-19C8-426B-9FFC-5B90C85B03BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93EE20EC-19C8-426B-9FFC-5B90C85B03BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
