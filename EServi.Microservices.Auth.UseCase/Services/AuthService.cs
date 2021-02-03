@@ -57,12 +57,12 @@ namespace EServi.Microservices.Auth.UseCase.Services
 
             if (identity == null)
             {
-                throw new ValidationException();
+                throw new ValidationException("Su correo electónico no está registrado en la plataforma");
             }
 
             if (!identity.IsEnabled)
             {
-                throw new ValidationException();
+                throw new ValidationException("Se ha desabilitado su acceso a la plataforma");
             }
 
             var passwordEncrypted = Encryptor.GetHash(login.Password, identity.SecretKey);
@@ -71,7 +71,7 @@ namespace EServi.Microservices.Auth.UseCase.Services
 
             if (!isValid)
             {
-                throw new ValidationException();
+                throw new ValidationException("Las credenciales brindadas son incorrectas");
             }
 
             var tokenContent = new Dictionary<string, string> {{"userId", identity.UserId}};

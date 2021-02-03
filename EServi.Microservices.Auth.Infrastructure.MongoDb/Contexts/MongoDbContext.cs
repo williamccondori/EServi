@@ -31,6 +31,7 @@ namespace EServi.Microservices.Auth.Infrastructure.MongoDb.Contexts
                 cm.MapMember(c => c.UserCreated).SetElementName("userCreated");
                 cm.MapMember(c => c.UserUpdated).SetElementName("userUpdated");
 
+                cm.MapMember(c => c.UserId).SetElementName("userId");
                 cm.MapMember(c => c.Email).SetElementName("email");
                 cm.MapMember(c => c.Password).SetElementName("password");
                 cm.MapMember(c => c.IsEnabled).SetElementName("isEnabled");
