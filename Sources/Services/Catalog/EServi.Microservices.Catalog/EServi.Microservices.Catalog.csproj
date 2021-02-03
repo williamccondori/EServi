@@ -4,5 +4,9 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EServi.Microservices.Catalog.IoC\EServi.Microservices.Catalog.IoC.csproj" />
+    </ItemGroup>
+
 
 </Project>

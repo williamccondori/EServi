@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "EServi.Microservices.Email": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
