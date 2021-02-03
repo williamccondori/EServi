@@ -1,11 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
-
     <ItemGroup>
-      <ProjectReference Include="..\EServi.RabbitMq\EServi.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\..\Helpers\EServi.RabbitMq\EServi.RabbitMq.csproj" />
     </ItemGroup>
-
 </Project>

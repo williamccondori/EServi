@@ -6,6 +6,6 @@
         <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\..\..\utils\EServi.RabbitMq\EServi.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\..\Helpers\EServi.RabbitMq\EServi.RabbitMq.csproj" />
     </ItemGroup>
 </Project>

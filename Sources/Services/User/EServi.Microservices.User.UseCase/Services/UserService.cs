@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using EServi.Helper;
 using EServi.Microservices.User.Domain.Repositories;
 using EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.Auth.Models;
 using EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.Auth.Publishers;
 using EServi.Microservices.User.UseCase.Models;
-using EServi.Shared.Helpers;
 
 namespace EServi.Microservices.User.UseCase.Services
 {
@@ -20,12 +20,12 @@ namespace EServi.Microservices.User.UseCase.Services
             _userRepository = userRepository;
         }
 
-        public async Task<UserInfo> GetInfoById(string id)
+        public Task<UserInfo> GetInfoById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<UserProfile> UpdateProfile(string id, UserProfile userProfile)
+        public Task<UserProfile> UpdateProfile(string id, UserProfile userProfile)
         {
             throw new NotImplementedException();
         }

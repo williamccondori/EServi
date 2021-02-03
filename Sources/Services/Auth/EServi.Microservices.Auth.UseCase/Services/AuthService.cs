@@ -68,7 +68,7 @@ namespace EServi.Microservices.Auth.UseCase.Services
             {
                 throw new ValidationException("Las credenciales brindadas son incorrectas");
             }
-            
+
             if (!identity.IsEnabled)
             {
                 throw new ValidationException("Se ha desabilitado su acceso a la plataforma");
