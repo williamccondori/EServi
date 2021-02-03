@@ -51,7 +51,8 @@ namespace EServi.Microservices.User.UseCase.Services
             {
                 UserId = user.Id,
                 Email = user.Email,
-                Password = (passwordEncrypted, secretKey),
+                Password = passwordEncrypted,
+                PasswordKey = secretKey,
                 FullName = $"{user.Name} {user.LastName}",
             };
 

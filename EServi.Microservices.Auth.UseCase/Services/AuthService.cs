@@ -31,7 +31,7 @@ namespace EServi.Microservices.Auth.UseCase.Services
         public async Task Register(AuthRegister authRegister)
         {
             var identity = Identity.Create(authRegister.UserId, authRegister.Email,
-                authRegister.Password.Item1, authRegister.Password.Item2);
+                authRegister.Password, authRegister.PasswordKey);
 
             await _identityRepository.Create(identity);
 
