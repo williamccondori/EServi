@@ -32,9 +32,9 @@ namespace EServi.Microservices.Auth.Controllers
 
             try
             {
-                var authToken = await _authService.Authenticate(login);
+                var response = await _authService.Authenticate(login);
 
-                return Ok(authToken);
+                return Ok(response);
             }
             catch (ValidationException e)
             {
