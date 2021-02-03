@@ -32,9 +32,9 @@ namespace EServi.Microservices.User.Controllers
 
             try
             {
-                var userInfo = await _userService.GetInfoById(id);
+                var result = await _userService.GetInfoById(id);
 
-                return Ok(userInfo);
+                return Ok(result);
             }
             catch (ValidationException e)
             {
@@ -55,9 +55,9 @@ namespace EServi.Microservices.User.Controllers
 
             try
             {
-                var userProfileModified = await _userService.UpdateProfile(id, userProfile);
+                var result = await _userService.UpdateProfile(id, userProfile);
 
-                return Ok(userProfileModified);
+                return Ok(result);
             }
             catch (ValidationException e)
             {
@@ -70,8 +70,7 @@ namespace EServi.Microservices.User.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
-
-
+        
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] UserRegister userRegister)
         {
@@ -79,9 +78,9 @@ namespace EServi.Microservices.User.Controllers
 
             try
             {
-                var newUserRegister = await _userService.Register(userRegister);
+                var result = await _userService.Register(userRegister);
 
-                return Ok(newUserRegister);
+                return Ok(result);
             }
             catch (ValidationException e)
             {

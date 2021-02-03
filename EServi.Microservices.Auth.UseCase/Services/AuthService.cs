@@ -8,10 +8,9 @@ using EServi.Microservices.Auth.Infrastructure.Jwt.Builders;
 using EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.Email.Models;
 using EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.Email.Publishers;
 using EServi.Microservices.Auth.UseCase.Models;
-using EServi.Shared.Encryptor;
 using EServi.Shared.Helpers;
 
-namespace EServi.Microservices.Auth.UseCase.Services.Implementations
+namespace EServi.Microservices.Auth.UseCase.Services
 {
     public class AuthService : IAuthService
     {
@@ -31,18 +30,8 @@ namespace EServi.Microservices.Auth.UseCase.Services.Implementations
 
         public async Task Register(AuthRegister authRegister)
         {
-            var existingIdentity = await _identityRepository.GetByEmail(authRegister.Email);
-
-            if (existingIdentity != null)
-            {
-                throw new ValidationException();
-            }
-
-            var secretKey = Encryptor.GetSecretKey();
-
-            var passwordEncrypted = Encryptor.GetHash(authRegister.Password, secretKey);
-
-            var identity = Identity.Create(authRegister.UserId, authRegister.Email, passwordEncrypted, secretKey);
+            var identity = Identity.Create(authRegister.UserId, authRegister.Email,
+                authRegister.Password.Item1, authRegister.Password.Item2);
 
             await _identityRepository.Create(identity);
 
@@ -59,7 +48,7 @@ namespace EServi.Microservices.Auth.UseCase.Services.Implementations
                 FullName = authRegister.FullName
             };
 
-            _emailPublisher.SendActivationCodeEmail(activationCodeEmail);
+            _emailPublisher.SendActivationCode(activationCodeEmail);
         }
 
         public async Task<AuthToken> Authenticate(Login login)

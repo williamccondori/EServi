@@ -3,6 +3,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\EServi.Microservices.Auth.UseCase\EServi.Microservices.Auth.UseCase.csproj"/>
+        <ProjectReference Include="..\EServi.Consul\EServi.Consul.csproj" />
+        <ProjectReference Include="..\EServi.Microservices.Auth.IoC\EServi.Microservices.Auth.IoC.csproj" />
+        <ProjectReference Include="..\EServi.Microservices.Auth.UseCase\EServi.Microservices.Auth.UseCase.csproj" />
     </ItemGroup>
 </Project>

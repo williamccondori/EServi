@@ -4,6 +4,6 @@ namespace EServi.Microservices.Auth.Infrastructure.RabbitMq.Publishers.Email.Pub
 {
     public interface IEmailPublisher
     {
-        void SendActivationCodeEmail(ActivationCodeEmail activationCodeEmail);
+        void SendActivationCode(ActivationCodeEmail activationCodeEmail);
     }
 }

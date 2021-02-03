@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace EServi.Microservices.Auth.Infrastructure.Jwt.Builders.Implementations
+namespace EServi.Microservices.Auth.Infrastructure.Jwt.Builders
 {
     public class JwtBuilder : IJwtBuilder
     {

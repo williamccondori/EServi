@@ -1,19 +1,16 @@
 ﻿using System;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
 namespace EServi.RabbitMq
 {
-    public class RabbitMqClient
+    public class RabbitMqClient : IRabbitMqClient
     {
-        private readonly string _hostname;
-        private readonly string _username;
-        private readonly string _password;
+        private readonly RabbitMqOptions _options;
 
-        public RabbitMqClient(string hostname, string username, string password)
+        public RabbitMqClient(IOptions<RabbitMqOptions> options)
         {
-            _hostname = hostname;
-            _username = username;
-            _password = password;
+            _options = options.Value;
         }
 
         public IConnection Connect()
@@ -23,10 +20,10 @@ namespace EServi.RabbitMq
             {
                 var connectionFactory = new ConnectionFactory
                 {
-                    HostName = _hostname,
+                    HostName = _options.Hostname,
                     Port = AmqpTcpEndpoint.UseDefaultPort,
-                    UserName = _username,
-                    Password = _password,
+                    UserName = _options.Username,
+                    Password = _options.Password,
                     VirtualHost = "/"
                 };
 

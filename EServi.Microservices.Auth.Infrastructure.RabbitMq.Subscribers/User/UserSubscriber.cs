@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using EServi.Microservices.Auth.UseCase.Models;
 using EServi.Microservices.Auth.UseCase.Services;
 using EServi.RabbitMq;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -14,25 +14,19 @@ namespace EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers.User
 {
     public class UserSubscriber : BackgroundService
     {
-        private const string QUEUE_NAME = "send-activation-code--email";
+        private const string QueueName = "auth--register-auth";
 
-        private readonly IModel _channel;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IConnection _connection;
-        private readonly IAuthService _authService;
+        private readonly IModel _channel;
 
-        public UserSubscriber(IOptions<RabbitMqOptions> options, IAuthService authService)
+        public UserSubscriber(IRabbitMqClient rabbitMqClient, IServiceScopeFactory serviceScopeFactory)
         {
-            _authService = authService;
-
-            var connectionOptions = options.Value;
-
-            var rabbitClient = new RabbitMqClient(connectionOptions.Hostname,
-                connectionOptions.Username, connectionOptions.Password);
-
-            _connection = rabbitClient.Connect();
-
+            _serviceScopeFactory = serviceScopeFactory;
+            
+            _connection = rabbitMqClient.Connect();
             _channel = _connection.CreateModel();
-            _channel.QueueDeclare(QUEUE_NAME, true, false, false, null);
+            _channel.QueueDeclare(QueueName, true, false, false, null);
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -50,14 +44,17 @@ namespace EServi.Microservices.Auth.Infrastructure.RabbitMq.Subscribers.User
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
 
-            _channel.BasicConsume(QUEUE_NAME, false, consumer);
+            _channel.BasicConsume(QueueName, false, consumer);
 
             return Task.CompletedTask;
         }
 
         private void HandleMessage(AuthRegister authRegister)
         {
-            _authService.Register(authRegister);
+            using var scope = _serviceScopeFactory.CreateScope();
+                
+            var authService = scope.ServiceProvider.GetRequiredService<IAuthService>();
+            authService.Register(authRegister);
         }
 
         public override void Dispose()

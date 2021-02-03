@@ -7,11 +7,11 @@ using MongoDB.Driver;
 
 namespace EServi.Microservices.Auth.Infrastructure.MongoDb.Contexts
 {
-    public abstract class MongoDbContext : MongoClient
+    public class MongoDbContext : MongoClient
     {
         private readonly IMongoDatabase _database;
 
-        protected MongoDbContext(string host, string port, string user, string password, string databaseName)
+        public MongoDbContext(string host, string port, string user, string password, string databaseName)
         {
             var connectionString = $"mongodb://{user}:{password}@{host}:{port}";
 
@@ -30,10 +30,29 @@ namespace EServi.Microservices.Auth.Infrastructure.MongoDb.Contexts
                 cm.MapMember(c => c.UpdatedAt).SetElementName("updatedAt");
                 cm.MapMember(c => c.UserCreated).SetElementName("userCreated");
                 cm.MapMember(c => c.UserUpdated).SetElementName("userUpdated");
+
                 cm.MapMember(c => c.Email).SetElementName("email");
                 cm.MapMember(c => c.Password).SetElementName("password");
                 cm.MapMember(c => c.IsEnabled).SetElementName("isEnabled");
                 cm.MapMember(c => c.SecretKey).SetElementName("secretKey");
+            });
+
+            BsonClassMap.RegisterClassMap<Code>(cm =>
+            {
+                cm.MapIdProperty(c => c.Id)
+                    .SetIdGenerator(StringObjectIdGenerator.Instance)
+                    .SetSerializer(new StringSerializer(BsonType.ObjectId));
+
+                cm.MapMember(c => c.IsActive).SetElementName("isActive");
+                cm.MapMember(c => c.CreatedAt).SetElementName("createdAt");
+                cm.MapMember(c => c.UpdatedAt).SetElementName("updatedAt");
+                cm.MapMember(c => c.UserCreated).SetElementName("userCreated");
+                cm.MapMember(c => c.UserUpdated).SetElementName("userUpdated");
+
+                cm.MapMember(c => c.UserId).SetElementName("userId");
+                cm.MapMember(c => c.Type).SetElementName("type");
+                cm.MapMember(c => c.Value).SetElementName("value");
+                cm.MapMember(c => c.IsEnabled).SetElementName("isEnabled");
             });
         }
 

@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
-
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Driver" Version="2.12.0-beta1" />
+    </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\EServi.Microservices.User.Domain\EServi.Microservices.User.Domain.csproj" />
-      <ProjectReference Include="..\EServi.Microservices.User.Infrastructure.RabbitMq.Publishers\EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.csproj" />
-      <ProjectReference Include="..\EServi.Shared\EServi.Shared.csproj" />
     </ItemGroup>
-
 </Project>

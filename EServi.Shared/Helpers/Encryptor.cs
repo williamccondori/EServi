@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace EServi.Shared.Encryptor
+namespace EServi.Shared.Helpers
 {
     public static class Encryptor
     {

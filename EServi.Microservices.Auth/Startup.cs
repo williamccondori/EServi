@@ -1,8 +1,7 @@
+using EServi.Consul;
 using EServi.Microservices.Auth.Infrastructure.Jwt;
-using EServi.Microservices.Auth.Infrastructure.Jwt.Builders;
-using EServi.Microservices.Auth.Infrastructure.Jwt.Builders.Implementations;
-using EServi.Microservices.Auth.UseCase.Services;
-using EServi.Microservices.Auth.UseCase.Services.Implementations;
+using EServi.Microservices.Auth.IoC;
+using EServi.RabbitMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,20 +22,17 @@ namespace EServi.Microservices.Auth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RabbitMqOptions>(Configuration.GetSection("RabbitMq"));
+            services.Configure<ConsulOptions>(Configuration.GetSection("Consul"));
+            services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
+            
             services.AddControllers();
+            services.AddRabbitMq();
+            services.AddConsul();
 
-            services.AddScoped<IAuthService, AuthService>();
-
-            services.Configure<JwtOptions>(o =>
-            {
-                o.ExpiryMinutes = 30;
-                o.SecretId = "8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb";
-            });
-
-            services.AddScoped<IJwtBuilder, JwtBuilder>();
+            ServiceConfiguration.Configure(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -51,6 +47,8 @@ namespace EServi.Microservices.Auth
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            
+            app.UseConsul();
         }
     }
 }

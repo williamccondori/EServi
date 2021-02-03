@@ -18,9 +18,9 @@ namespace EServi.Microservices.Auth.Infrastructure.MongoDb.Repositories
 
         public async Task<Identity> GetByEmail(string email)
         {
-            var identities = await _context.Identity.FindAsync(x => x.IsActive && x.Email == email);
-
-            return identities.Current.FirstOrDefault();
+            var task = await _context.Identity.FindAsync(x => x.IsActive && x.Email == email);
+            var identities = await task.ToListAsync();
+            return identities.FirstOrDefault();
         }
 
         public async Task<Identity> Create(Identity identity)

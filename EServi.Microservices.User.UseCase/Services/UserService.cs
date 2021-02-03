@@ -1,11 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using EServi.Microservices.User.Domain.Repositories;
 using EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.Auth.Models;
 using EServi.Microservices.User.Infrastructure.RabbitMq.Publishers.Auth.Publishers;
 using EServi.Microservices.User.UseCase.Models;
+using EServi.Shared.Helpers;
 
-namespace EServi.Microservices.User.UseCase.Services.Implementations
+namespace EServi.Microservices.User.UseCase.Services
 {
     public class UserService : IUserService
     {
@@ -30,8 +32,18 @@ namespace EServi.Microservices.User.UseCase.Services.Implementations
 
         public async Task<UserRegister> Register(UserRegister userRegister)
         {
+            var existingUser = await _userRepository.GetByEmail(userRegister.Email);
+
+            if (existingUser != null)
+            {
+                throw new ValidationException("Ya se ha registrado con usuario con el correo electrónico");
+            }
+
             var user = Domain.Entities.User.Create(userRegister.Name, userRegister.LastName, userRegister.Phone,
                 userRegister.Email);
+
+            var secretKey = Encryptor.GetSecretKey();
+            var passwordEncrypted = Encryptor.GetHash(userRegister.Password, secretKey);
 
             await _userRepository.Create(user);
 
@@ -39,7 +51,7 @@ namespace EServi.Microservices.User.UseCase.Services.Implementations
             {
                 UserId = user.Id,
                 Email = user.Email,
-                Password = userRegister.Password,
+                Password = (passwordEncrypted, secretKey),
                 FullName = $"{user.Name} {user.LastName}",
             };
 
