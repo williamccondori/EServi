@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Email"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Catalog.Infrastructure.RabbitMq.Publishers", "Sources\Services\Catalog\EServi.Microservices.Catalog.Infrastructure.RabbitMq.Publishers\EServi.Microservices.Catalog.Infrastructure.RabbitMq.Publishers.csproj", "{B240F688-35C6-40B6-8644-198A066E9FB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EServi.Microservices.Catalog.Infrastructure.PostgreSql", "Sources\Services\Catalog\EServi.Microservices.Catalog.Infrastructure.PostgreSql\EServi.Microservices.Catalog.Infrastructure.PostgreSql.csproj", "{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -382,6 +384,18 @@ Global
 		{B240F688-35C6-40B6-8644-198A066E9FB3}.Release|x64.Build.0 = Release|Any CPU
 		{B240F688-35C6-40B6-8644-198A066E9FB3}.Release|x86.ActiveCfg = Release|Any CPU
 		{B240F688-35C6-40B6-8644-198A066E9FB3}.Release|x86.Build.0 = Release|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Debug|x64.Build.0 = Debug|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Debug|x86.Build.0 = Debug|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Release|x64.ActiveCfg = Release|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Release|x64.Build.0 = Release|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Release|x86.ActiveCfg = Release|Any CPU
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4BB79F59-5093-4DBA-9B6B-376DE3BD9854} = {F3A7B8AF-D4D9-448E-B265-C599F27E7BC4}
@@ -416,5 +430,6 @@ Global
 		{4B2AB15F-D2B5-47DF-8FFE-5794A6704DCC} = {002B8BEB-8D93-47A6-9AB1-9255BFAF72DD}
 		{2704B7C9-C448-4A07-959D-E50A7CE415B0} = {4B2AB15F-D2B5-47DF-8FFE-5794A6704DCC}
 		{B240F688-35C6-40B6-8644-198A066E9FB3} = {52DFE03F-5662-4BE3-BB3E-BF72CAC8C78F}
+		{C5A2C7C7-116A-4BD0-AE7F-96354DF2C382} = {52DFE03F-5662-4BE3-BB3E-BF72CAC8C78F}
 	EndGlobalSection
 EndGlobal

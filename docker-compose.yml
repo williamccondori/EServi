@@ -4,15 +4,32 @@ services:
   
   rabbit:
     image: rabbitmq:3-management
-    container_name: rabbit
+    container_name: eservices-rabbitmq
     ports:
       - 5672:5672
       - 8502:15672
 
   consul:
     image: consul:latest
+    container_name: eservices-consul
     command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
-    hostname: consul
-    container_name: consul
+    hostname: eservices-consul
     ports:
       - 8500:8500
+
+  eservices-catalog-db:
+    image: postgres
+    container_name: eservices-catalog-db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: eservices-catalog-db
+      POSTGRES_PASSWORD: ficticio
+      
+  eservices-catalog-db-admin:
+    image: adminer
+    container_name: eservices-catalog-db-admin
+    restart: always
+    ports:
+      - 9000:8080

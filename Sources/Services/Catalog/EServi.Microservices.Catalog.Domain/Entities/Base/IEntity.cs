@@ -2,9 +2,9 @@
 
 namespace EServi.Microservices.Catalog.Domain.Entities.Base
 {
-    public interface IDocument
+    public interface IEntity
     {
-        string Id { get; set; }
+        Guid Id { get; set; }
         bool IsActive { get; set; }
         DateTime CreatedAt { get; set; }
         DateTime UpdatedAt { get; set; }

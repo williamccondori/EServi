@@ -5,13 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\EServi.Microservices.Catalog.Domain\EServi.Microservices.Catalog.Domain.csproj" />
-      <ProjectReference Include="..\EServi.Microservices.Catalog.Infrastructure.RabbitMq.Publishers\EServi.Microservices.Catalog.Infrastructure.RabbitMq.Publishers.csproj" />
-      <ProjectReference Include="..\EServi.Microservices.Catalog.UseCase\EServi.Microservices.Catalog.UseCase.csproj" />
+        <ProjectReference Include="..\..\..\Helpers\EServi.Consul\EServi.Consul.csproj"/>
+        <ProjectReference Include="..\EServi.Microservices.Catalog.Domain\EServi.Microservices.Catalog.Domain.csproj"/>
+        <ProjectReference Include="..\EServi.Microservices.Catalog.Infrastructure.PostgreSql\EServi.Microservices.Catalog.Infrastructure.PostgreSql.csproj"/>
+        <ProjectReference Include="..\EServi.Microservices.Catalog.Infrastructure.RabbitMq.Publishers\EServi.Microservices.Catalog.Infrastructure.RabbitMq.Publishers.csproj"/>
+        <ProjectReference Include="..\EServi.Microservices.Catalog.UseCase\EServi.Microservices.Catalog.UseCase.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -25,6 +25,28 @@ namespace EServi.Microservices.Catalog.Controllers
             _catalogService = catalogService;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPostById(Guid id)
+        {
+            _logger.LogTrace(nameof(GetPostById));
+
+            try
+            {
+                var post = await _catalogService.GetPostById(id);
+                return Ok(post);
+            }
+            catch (ValidationException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
+        
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromBody] PostModel postModel)
         {
