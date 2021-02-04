@@ -1,13 +1,6 @@
 version: '3.4'
 
 services:
-  
-  rabbit:
-    image: rabbitmq:3-management
-    container_name: eservices-rabbitmq
-    ports:
-      - 5672:5672
-      - 8502:15672
 
   consul:
     image: consul:latest
@@ -16,6 +9,20 @@ services:
     hostname: eservices-consul
     ports:
       - 8500:8500
+
+  eservices-adminer:
+    image: adminer
+    container_name: eservices-adminer
+    restart: always
+    ports:
+      - 8501:8080
+
+  rabbit:
+    image: rabbitmq:3-management
+    container_name: eservices-rabbitmq
+    ports:
+      - 5672:5672
+      - 8502:15672
 
   eservices-catalog-db:
     image: postgres
@@ -26,10 +33,3 @@ services:
     environment:
       POSTGRES_DB: eservices-catalog-db
       POSTGRES_PASSWORD: ficticio
-      
-  eservices-catalog-db-admin:
-    image: adminer
-    container_name: eservices-catalog-db-admin
-    restart: always
-    ports:
-      - 9000:8080
