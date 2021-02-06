@@ -12,7 +12,8 @@ namespace EServi.Microservices.Catalog.IoC
     {
         public static void Configure(IServiceCollection serviceCollection, string connectionString)
         {
-            serviceCollection.AddDbContext<CatalogContext>(options => options.UseNpgsql(connectionString));
+            serviceCollection.AddDbContext<CatalogContext>(options =>
+                options.UseNpgsql(connectionString));
 
             // Publishers
             serviceCollection.AddScoped<ISearchPublisher, SearchPublisher>();

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq;
 using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -23,6 +20,8 @@ namespace EServi.Consul
             {
                 var options = p.GetRequiredService<IOptions<ConsulOptions>>().Value;
 
+                Console.WriteLine(options.HttpEndpoint);
+
                 if (!string.IsNullOrEmpty(options.HttpEndpoint))
                 {
                     o.Address = new Uri(options.HttpEndpoint);
@@ -36,25 +35,21 @@ namespace EServi.Consul
             var consulOptions = app.ApplicationServices.GetRequiredService<IOptions<ConsulOptions>>();
             var applicationLifetime = app.ApplicationServices.GetRequiredService<IApplicationLifetime>();
 
-            if (!(app.Properties["server.Features"] is FeatureCollection features))
-            {
-                return;
-            }
-
-            var addresses = features.Get<IServerAddressesFeature>();
-
-            var address = addresses.Addresses.First();
-
-            var uri = new Uri(address);
-
             var options = consulOptions.Value;
 
             var agentServiceRegistration = new AgentServiceRegistration
             {
                 ID = Guid.NewGuid().ToString(),
+                Address = $"{options.ServiceHost}",
+                Port = options.ServicePort,
                 Name = options.ServiceName,
-                Address = $"{uri.Host}",
-                Port = uri.Port
+                Check = new AgentCheckRegistration
+                {
+                    TCP = $"{options.ServiceHost}:{options.ServicePort}",
+                    Notes = $"Runs a TCP check on port {options.ServicePort}",
+                    Timeout = TimeSpan.FromSeconds(5),
+                    Interval = TimeSpan.FromSeconds(10)
+                }
             };
 
             consulClient.Agent.ServiceRegister(agentServiceRegistration).GetAwaiter().GetResult();

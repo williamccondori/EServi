@@ -1,0 +1,20 @@
+﻿{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/auth/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/post/{everything}",
+      "UpstreamHttpMethod": [ "Post" ],
+      "ServiceName": "eservices-auth",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 9001
+    }
+  }
+}

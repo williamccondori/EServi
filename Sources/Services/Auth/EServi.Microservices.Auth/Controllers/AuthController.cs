@@ -44,7 +44,7 @@ namespace EServi.Microservices.Auth.Controllers
             {
                 _logger.LogError(e.Message);
 
-                return StatusCode(StatusCodes.Status500InternalServerError, e);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
         
@@ -67,7 +67,7 @@ namespace EServi.Microservices.Auth.Controllers
             {
                 _logger.LogError(e.Message);
 
-                return StatusCode(StatusCodes.Status500InternalServerError, e);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
     }

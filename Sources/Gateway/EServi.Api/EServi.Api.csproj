@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Ocelot" Version="13.8.5"/>
-        <PackageReference Include="Ocelot.Provider.Consul" Version="13.8.5"/>
+        <PackageReference Include="Ocelot" Version="14.0.11" />
+        <PackageReference Include="Ocelot.Provider.Consul" Version="14.0.11" />
     </ItemGroup>
 
 

@@ -1,28 +1,50 @@
 version: '3.4'
 
-services:
+networks:
+  eservi:
+    driver: bridge
 
-  consul:
+services:
+  
+  # Utilidades
+
+  eservices-portainer:
+    image: portainer/portainer
+    container_name: eservices-portainer
+    ports:
+      - 9000:9000
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - eservi
+
+  eservices-consul:
     image: consul:latest
     container_name: eservices-consul
     command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
     hostname: eservices-consul
     ports:
-      - 8500:8500
+      - 9001:8500
+    networks:
+      - eservi
 
   eservices-adminer:
     image: adminer
     container_name: eservices-adminer
     restart: always
     ports:
-      - 8501:8080
+      - 9002:8080
+    networks:
+      - eservi
 
-  rabbit:
+  eservices-rabbitmq:
     image: rabbitmq:3-management
     container_name: eservices-rabbitmq
     ports:
       - 5672:5672
-      - 8502:15672
+      - 9003:15672
+    networks:
+      - eservi
 
   eservices-catalog-db:
     image: postgres
@@ -33,3 +55,70 @@ services:
     environment:
       POSTGRES_DB: eservices-catalog-db
       POSTGRES_PASSWORD: ficticio
+    networks:
+      - eservi
+
+  # Microservicios
+
+  # API Gateway
+
+  eservices-gateway:
+    depends_on:
+      - eservices-consul
+    build:
+      context: ./Sources
+      dockerfile: Gateway.Dockerfile
+    image: eservices-gateway:latest
+    container_name: eservices-gateway
+    networks:
+      - eservi
+    ports: 
+      - 8080:80
+
+  # Auth
+
+  eservices-auth:
+    depends_on:
+      - eservices-gateway
+      - eservices-rabbitmq
+      - eservices-consul
+    build:
+      context: ./Sources
+      dockerfile: Auth.Dockerfile
+    image: eservices-auth:latest
+    container_name: eservices-auth
+    environment: 
+      - RabbitMq__Hostname=orangutan.rmq.cloudamqp.com
+      - RabbitMq__Username=qgebxpmz
+      - RabbitMq__Password=idXyBVHxXqpZKT2yKM6rEuRa0DOUaHZF
+      - RabbitMq__VHost=qgebxpmz
+      - Consul__HttpEndpoint=http://eservices-consul:8500
+      - Consul__ServiceName=eservices-auth
+      - Consul__ServiceHost=eservices-auth
+      - Consul__ServicePort=80
+    networks:
+      - eservi
+    ports:
+      - 80:80
+
+  eservices-auth-replica:
+    depends_on:
+      - eservices-gateway
+      - eservices-rabbitmq
+      - eservices-consul
+    build:
+      context: ./Sources
+      dockerfile: Auth.Dockerfile
+    image: eservices-auth:latest
+    container_name: eservices-auth-replica
+    environment:
+      - RabbitMq__Hostname=orangutan.rmq.cloudamqp.com
+      - RabbitMq__Username=qgebxpmz
+      - RabbitMq__Password=idXyBVHxXqpZKT2yKM6rEuRa0DOUaHZF
+      - RabbitMq__VHost=qgebxpmz
+      - Consul__HttpEndpoint=http://eservices-consul:8500
+      - Consul__ServiceName=eservices-auth
+      - Consul__ServiceHost=eservices-auth-replica
+      - Consul__ServicePort=80
+    networks:
+      - eservi

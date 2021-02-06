@@ -24,7 +24,7 @@ namespace EServi.RabbitMq
                     Port = AmqpTcpEndpoint.UseDefaultPort,
                     UserName = _options.Username,
                     Password = _options.Password,
-                    VirtualHost = "/"
+                    VirtualHost = _options.VHost
                 };
 
                 connection = connectionFactory.CreateConnection();
